@@ -17,6 +17,7 @@ import com.wimika.moneyguard.models.PolicyProposal;
 import com.wimika.moneyguard.models.RiskEvent;
 import com.wimika.moneyguard.models.SecurityModule;
 import com.wimika.moneyguard.models.SecurityModuleSummary;
+import com.wimika.moneyguard.models.SessionInfo;
 import com.wimika.moneyguard.models.SingleAccountCoverage;
 import com.wimika.moneyguard.models.NewClaim;
 import com.wimika.moneyguard.models.NewClaimUpdate;
@@ -25,7 +26,7 @@ import com.wimika.moneyguard.models.Notification;
 /**
  * Interface that represents a Wimika MoneyGuard Session. This interface provides 
  * access to the core MoneyGuard functionality. A session can be obtained by calling
- * the {@link MoneyGuardSdk#signIn(String,String,Client) signIn} or the {@link MoneyGuardSdk#register(String,String,Client) signUp} methods
+ * the {@link MoneyGuardSdk#initialize(SessionInfo, Client)} initialize} method
  */
 public interface Session {
 
@@ -56,12 +57,6 @@ public interface Session {
     PolicyProposal requestPolicyRenewalPolicyProposal(String policyNumber);
     
     Policy buyPolicy(PolicyProposal proposal, BillingOption billingOption, Boolean autoRenew, String accountToDebit);
-
-    String getTypingProfilePrompt();
-
-    void beginTypingProfileCapture(String inputId);
-
-    void endTypingProfileCapture(String inputId);
 
     void requestReimbursementForApprovedClaim(String claimId, String bankId, String accountNumber);
 

@@ -19,12 +19,56 @@ their Android applications.
 
 ## Usage
 
-### 0) Permissions
+### 1) Permissions
+
+Ensure that the following permissions are set in your AndroidManifest.xml
 
 ```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.wimika.moneyguard">
+
 <uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.ACCESSIBILITY_SERVICE"/>
+<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+</manifest>
 ```
 
-### 1) Register or Login to create a MoneyGuard session
+### 2) Initialize MoneyGuard to obtain a session
+
+Initialize Moneyguard. Initialization method instances of [SessionInfo] and [Client]
+```java
 
 
+class MoneyGuardApp {
+    public static Session intializeMoneyGuard(SessionInfo sessionInfo, Client client) {
+        MoneyGuardSdk.initialize(sessionInfo, client);
+    }
+}
+
+```
+
+
+### 3) Choose Accounts to cover and coverage limits, then pay for subscription
+```java
+
+
+class MoneyGuardApp {
+    
+    private Session session;
+    public Policy subscribe(String accountNumber, Double coverageLimit, Boolean autoRenew, String paymentAccount) {
+        
+        //Obtain policy proposal for type of account coverage. 
+        PolicyProposal proposal = this.session.requestPolicyProposal(new SingleAccountCoverage(accountNumber, coverageLimit));
+        
+        //Select a billing option 
+        Integer selectedBillingOption = 0;
+        BillingOption billingOption = proposal.getBillingOptions().get(selectedBillingOption);
+        
+        //Pay, and  obtain Policy
+        return session.buyPolicy(proposal, billingOption, autoRenew, paymentAccount );
+    }
+}
+
+```
