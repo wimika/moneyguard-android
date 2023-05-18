@@ -12,7 +12,7 @@ their Android applications.
 
 2. Implement a REST API endpoint that exposes [Wimika Partner Bank API](https://wimikabankservice.azurewebsites.net/swagger/index.html)
 
-3. Embed Wimika Moneyguard in your Android Application,
+3. Embed Wimika Moneyguard in your Android Application
 
 ## Requirements
 - Android SDKv16 (Android 4.1 "Jelly Bean") or later
@@ -37,7 +37,8 @@ Ensure that the following permissions are set in your AndroidManifest.xml
 
 ### 2) Initialize MoneyGuard to obtain a session
 
-Initialize Moneyguard. Initialization method instances of [SessionInfo] and [Client]
+Initialize Moneyguard. Initialization method instances of [SessionInfo](https://github.com/wimika/moneyguard-android/blob/main/app/src/main/java/com/wimika/moneyguard/models/SessionInfo.java) and [Client](https://github.com/wimika/moneyguard-android/blob/main/app/src/main/java/com/wimika/moneyguard/interfaces/Client.java). 
+Your Client implementation will provide implementations of [NotificationsListener](https://github.com/wimika/moneyguard-android/blob/main/app/src/main/java/com/wimika/moneyguard/interfaces/NotificationsListener.java) and [RiskExposureListener](https://github.com/wimika/moneyguard-android/blob/main/app/src/main/java/com/wimika/moneyguard/interfaces/RiskExposureEventListener.java) instances through which Moneyguard will provide notifications and information about risk events.
 ```java
 
 
