@@ -3,7 +3,7 @@
 
 ## MoneyGuard SDK for Android
 
-MoneyGuard SDK for Android allows financial institutions to embed [Moneyguard](https://www.wimika.ng/moneguard) into
+MoneyGuard SDK for Android allows financial institutions to embed [Moneyguard](https://wimika.ng/moneyguard/) into
 their Android applications. 
 
 ## Getting Started
